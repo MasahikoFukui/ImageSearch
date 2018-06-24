@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane fx:id="top" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="577.0" minWidth="562.0" prefHeight="654.0" prefWidth="587.0" style="-fx-background-color: cyan;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jp.fukui.imagesearch.app.AppController">
+   <children>
+      <AnchorPane fx:id="opPanel" layoutX="23.0" layoutY="48.0" prefHeight="195.0" prefWidth="542.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="48.0">
+         <children>
+            <Label layoutX="153.0" layoutY="71.0" text="検索先" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <TextField fx:id="directory" layoutX="20.0" layoutY="26.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onDragDropped="#folderDropped" onDragOver="#folderDragOver" onKeyPressed="#directoryKeyPressed" prefHeight="27.0" prefWidth="452.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="77.0" AnchorPane.topAnchor="26.0" />
+            <Button fx:id="reference" layoutX="486.0" layoutY="26.0" mnemonicParsing="false" onAction="#referenceClicked" prefHeight="27.0" prefWidth="56.0" text="参照" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0" />
+            <Label layoutX="151.0" layoutY="71.0" text="類似度" AnchorPane.leftAnchor="151.0" AnchorPane.topAnchor="71.0" />
+            <Label layoutX="490.0" layoutY="99.0" text="ゆるゆる" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="99.0" />
+            <Label layoutX="172.0" layoutY="99.0" text="厳密" AnchorPane.leftAnchor="172.0" AnchorPane.topAnchor="99.0" />
+            <Slider fx:id="differency" blockIncrement="8.0" layoutX="172.0" layoutY="120.0" majorTickUnit="16.0" max="128.0" minorTickCount="1" prefHeight="38.0" prefWidth="373.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="32.0" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="120.0" />
+            <Label layoutY="71.0" text="検索する画像" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="71.0" />
+            <Pane layoutX="21.0" layoutY="100.0" prefHeight="98.0" prefWidth="98.0" style="-fx-background-color: lightgray;" />
+            <Pane fx:id="dropMessage" layoutX="20.0" layoutY="99.0" prefHeight="100.0" prefWidth="98.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="99.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="53.0" text="ここへドロップ" />
+                  <Label layoutX="16.0" layoutY="30.0" prefHeight="17.0" prefWidth="65.0" text="ファイルを" />
+               </children>
+            </Pane>
+            <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="20.0" layoutY="99.0" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="99.0">
+               <children>
+                  <ImageView fx:id="thumbnail" fitHeight="98.0" fitWidth="98.0" nodeOrientation="INHERIT" onDragDropped="#fileDropped" onDragOver="#fileDragOver" onMouseClicked="#fileClicked" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </FlowPane>
+         </children>
+      </AnchorPane>
+      <Label layoutX="23.0" layoutY="265.0" text="検索結果" />
+      <ScrollPane cacheHint="QUALITY" depthTest="DISABLE" layoutX="23.0" layoutY="297.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="542.0" style="-fx-background-color: white; -fx-fit-to-height: true; -fx-fit-to-width: true;" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="297.0">
+         <content>
+            <ListView fx:id="results" cacheHint="QUALITY" depthTest="DISABLE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#resultClicked" style="-fx-background-color: white;" />
+         </content>
+      </ScrollPane>
+      <Label layoutX="137.0" layoutY="143.0" />
+      <Label fx:id="searching" layoutX="23.0" layoutY="547.0" prefHeight="17.0" prefWidth="517.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="22.0" />
+      <FlowPane alignment="CENTER" layoutX="23.0" layoutY="584.0" prefHeight="27.0" prefWidth="517.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="22.0">
+         <children>
+            <Button fx:id="start" mnemonicParsing="false" onAction="#startClicked" prefHeight="27.0" prefWidth="142.0" text="検索開始">
+               <FlowPane.margin>
+                  <Insets right="20.0" />
+               </FlowPane.margin>
+            </Button>
+            <Button fx:id="stop" mnemonicParsing="false" onAction="#stopClicked" prefHeight="27.0" prefWidth="135.0" text="中断">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </Button>
+         </children>
+      </FlowPane>
+      <MenuBar layoutX="-3.0" prefHeight="29.0" prefWidth="593.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#closeMenu" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#aboutMenu" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
